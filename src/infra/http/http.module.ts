@@ -6,6 +6,8 @@ import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constants';
 import { AuthenticateController } from './controllers/authenticate-controller';
 import { AuthenticateUser } from 'src/app/use-cases/authenticate-user';
+import { CreatePost } from 'src/app/use-cases/create-post';
+import { PostsController } from './controllers/posts-controller';
 
 @Module({
   imports: [
@@ -13,10 +15,10 @@ import { AuthenticateUser } from 'src/app/use-cases/authenticate-user';
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: '60s' },
+      signOptions: { expiresIn: 60 * 15 }, // 15 min
     }),
   ],
-  providers: [CreateUser, AuthenticateUser],
-  controllers: [UsersController, AuthenticateController],
+  providers: [CreateUser, AuthenticateUser, CreatePost],
+  controllers: [UsersController, AuthenticateController, PostsController],
 })
 export class HttpModule {}

@@ -1,5 +1,5 @@
 import { Post as rawPost } from '@prisma/client';
-import { Post } from 'src/app/entities/post';
+import { Post } from '../../../../app/entities/post';
 
 export class PrismaPostMapper {
   static toDomain(post: rawPost): Post {

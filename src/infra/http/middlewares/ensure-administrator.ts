@@ -12,10 +12,10 @@ export class EnsureAdministratorGuard implements CanActivate {
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest() as {
-      user: { sub: string };
+      user: { email: string };
     };
 
-    const user = await this.usersRepository.findByEmail(request.user.sub);
+    const user = await this.usersRepository.findByEmail(request.user.email);
 
     if (!user.isAdmin) throw new UnauthorizedException('User must be admin!');
 

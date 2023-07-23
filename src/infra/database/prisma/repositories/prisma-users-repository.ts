@@ -1,4 +1,4 @@
-import { User } from 'src/app/entities/user';
+import { User } from '../../../../app/entities/user';
 import { UsersRepository } from '../../../../app/repositories/users-repository';
 import { PrismaService } from '../prisma.service';
 import { Injectable } from '@nestjs/common';
@@ -18,7 +18,6 @@ export class PrismaUsersRepository implements UsersRepository {
 
   async create(user: User): Promise<void> {
     const raw = PrismaUserMapper.toPrisma(user);
-    console.log(raw);
     await this.prisma.user.create({ data: raw });
   }
 }
