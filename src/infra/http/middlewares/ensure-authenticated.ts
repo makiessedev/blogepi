@@ -1,4 +1,5 @@
 import {
+  CanActivate,
   ExecutionContext,
   Injectable,
   UnauthorizedException,
@@ -8,7 +9,7 @@ import { Request } from 'express';
 import { jwtConstants } from '../constants';
 
 @Injectable()
-export class EnsureAuthenticatedGuard {
+export class EnsureAuthenticatedGuard implements CanActivate {
   constructor(private jwtService: JwtService) {}
 
   private extractTokenFormHeader(request: Request): string | undefined {

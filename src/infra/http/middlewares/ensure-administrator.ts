@@ -1,4 +1,5 @@
 import {
+  CanActivate,
   ExecutionContext,
   Injectable,
   UnauthorizedException,
@@ -6,7 +7,7 @@ import {
 import { UsersRepository } from 'src/app/repositories/users-repository';
 
 @Injectable()
-export class EnsureAdministratorGuard {
+export class EnsureAdministratorGuard implements CanActivate {
   constructor(private usersRepository: UsersRepository) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
