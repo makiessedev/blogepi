@@ -8,6 +8,7 @@ import { AuthenticateController } from './controllers/authenticate-controller';
 import { AuthenticateUser } from 'src/app/use-cases/authenticate-user';
 import { CreatePost } from 'src/app/use-cases/create-post';
 import { PostsController } from './controllers/posts-controller';
+import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { PostsController } from './controllers/posts-controller';
       signOptions: { expiresIn: 60 * 15 }, // 15 min
     }),
   ],
-  providers: [CreateUser, AuthenticateUser, CreatePost],
+  providers: [CreateUser, AuthenticateUser, CreatePost, SubscriptionPost],
   controllers: [UsersController, AuthenticateController, PostsController],
 })
 export class HttpModule {}
