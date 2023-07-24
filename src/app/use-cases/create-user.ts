@@ -2,7 +2,7 @@ import { hash } from 'bcrypt';
 
 import { UsersRepository } from '../repositories/users-repository';
 import { User } from '../entities/user';
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 interface CreateUserRequest {
   name: string;
@@ -23,7 +23,8 @@ export class CreateUser {
 
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
-    if (userAlreadyExists) throw new Error('User already exists');
+    if (userAlreadyExists)
+      throw new UnauthorizedException('User already exists');
 
     const hashPassword = await hash(password, 8);
 

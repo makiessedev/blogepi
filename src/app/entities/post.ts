@@ -14,7 +14,7 @@ export class Post {
   constructor(private props: PostProps) {
     if (!this.props.id) this.props.id = randomUUID();
     if (!this.props.createdAt) this.props.createdAt = new Date();
-    if (!this.props.isPublish) this.props.isPublish = true;
+    if (this.props.isPublish === undefined) this.props.isPublish = true;
   }
 
   get id(): string {
