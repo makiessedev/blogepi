@@ -23,8 +23,6 @@ describe('Create User', () => {
 
     const user = await usersRepository.findByEmail(userProps.email);
 
-    console.log(user);
-
     expect(user.password !== userProps.password).toBeTruthy();
     expect(() => compare(userProps.password, user.password)).toBeTruthy();
     expect(user.isAdmin).toBeFalsy();
