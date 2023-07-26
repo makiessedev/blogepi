@@ -24,6 +24,7 @@ model Post {
   isPublish     Boolean        @default(true)
   title         String
   content       String
+  imageUrl      String?        @unique
   author        User           @relation(fields: [authorId], references: [id])
   authorId      String
   subscriptions Subscription[]

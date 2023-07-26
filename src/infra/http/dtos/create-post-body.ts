@@ -1,4 +1,4 @@
-import { IsBoolean, IsString, IsOptional } from 'class-validator';
+import { IsBoolean, IsString, IsOptional, IsUrl } from 'class-validator';
 
 export class CreatePostBody {
   @IsBoolean()
@@ -10,4 +10,9 @@ export class CreatePostBody {
 
   @IsString()
   content: string;
+
+  @IsString()
+  @IsUrl()
+  @IsOptional()
+  imageUrl: string;
 }

@@ -9,6 +9,7 @@ import { AuthenticateUser } from 'src/app/use-cases/authenticate-user';
 import { CreatePost } from 'src/app/use-cases/create-post';
 import { PostsController } from './controllers/posts-controller';
 import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
+import { UploadService } from '@infra/upload/supabase/upload-service';
 
 @Module({
   imports: [
@@ -19,7 +20,13 @@ import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
       signOptions: { expiresIn: 60 * 15 }, // 15 min
     }),
   ],
-  providers: [CreateUser, AuthenticateUser, CreatePost, SubscriptionPost],
+  providers: [
+    CreateUser,
+    AuthenticateUser,
+    CreatePost,
+    SubscriptionPost,
+    UploadService,
+  ],
   controllers: [UsersController, AuthenticateController, PostsController],
 })
 export class HttpModule {}

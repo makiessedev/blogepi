@@ -5,6 +5,7 @@ interface PostProps {
   isPublish?: boolean;
   title: string;
   content: string;
+  imageUrl?: string;
   authorId: string;
   updatedAt?: Date;
   createdAt?: Date;
@@ -43,6 +44,14 @@ export class Post {
 
   set content(value: string) {
     this.props.content = value;
+  }
+
+  get imageUrl(): string | undefined {
+    return this.props.imageUrl;
+  }
+
+  set imageUrl(value: string) {
+    this.props.imageUrl = value;
   }
 
   get authorId(): string {

@@ -11,6 +11,7 @@ export class PrismaPostMapper {
       id: post.id,
       authorId: post.authorId,
       content: post.content,
+      imageUrl: post.imageUrl,
       createdAt: post.createdAt,
       isPublish: post.isPublish,
       title: post.title,

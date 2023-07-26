@@ -6,6 +6,7 @@ interface CreatePostRequest {
   isPublish?: boolean;
   title: string;
   content: string;
+  imageUrl?: string;
   authorId: string;
 }
 
@@ -18,9 +19,9 @@ export class CreatePost {
   constructor(private postsRepository: PostsRepository) {}
 
   async execute(request: CreatePostRequest): Promise<CreatePostResponse> {
-    const { isPublish, title, content, authorId } = request;
+    const { isPublish, title, content, authorId, imageUrl } = request;
 
-    const post = new Post({ isPublish, title, content, authorId });
+    const post = new Post({ isPublish, title, content, imageUrl, authorId });
 
     await this.postsRepository.create(post);
 
