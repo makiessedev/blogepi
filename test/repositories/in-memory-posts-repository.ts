@@ -1,5 +1,8 @@
 import { Post } from '@app/entities/post';
-import { PostsRepository } from '@app/repositories/posts-repository';
+import {
+  PostsRepository,
+  UpdatePostDTO,
+} from '@app/repositories/posts-repository';
 
 export class InMemoryPostsRepository implements PostsRepository {
   public posts: Post[] = [];
@@ -15,5 +18,17 @@ export class InMemoryPostsRepository implements PostsRepository {
     if (!post) return null;
 
     return post;
+  }
+
+  delete(postId: string): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  update(post: UpdatePostDTO): Promise<void> {
+    throw new Error('Method not implemented.');
+  }
+
+  findAll(): Promise<Post[]> {
+    throw new Error('Method not implemented.');
   }
 }
