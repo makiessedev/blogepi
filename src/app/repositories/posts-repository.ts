@@ -1,6 +1,6 @@
 import { Post } from '../entities/post';
 
-interface UpdatePostDTO {
+export interface UpdatePostDTO {
   id: string;
   isPublish?: boolean;
   title?: string;

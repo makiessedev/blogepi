@@ -1,4 +1,7 @@
-import { PostsRepository } from '../../../../app/repositories/posts-repository';
+import {
+  PostsRepository,
+  UpdatePostDTO,
+} from '../../../../app/repositories/posts-repository';
 import { PrismaService } from '../prisma.service';
 import { Post } from '../../../../app/entities/post';
 import { PrismaPostMapper } from '../mappers/prisma-post-mapper';
@@ -18,7 +21,7 @@ export class PrismaPostsRepository implements PostsRepository {
     await this.prisma.post.delete({ where: { id: postId } });
   }
 
-  async update(post: Post): Promise<void> {
+  async update(post: UpdatePostDTO): Promise<void> {
     await this.prisma.post.update({
       where: { id: post.id },
       data: {
