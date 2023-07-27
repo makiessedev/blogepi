@@ -1,7 +1,11 @@
 import {
   Body,
   Controller,
+  Delete,
+  Get,
+  Param,
   Post,
+  Put,
   Request,
   UploadedFile,
   UseGuards,
@@ -14,8 +18,11 @@ import { CreatePostBody } from '../dtos/create-post-body';
 import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
 import { SubscriptionBody } from '../dtos/subscription-body';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { UploadService } from '@infra/upload/supabase/upload-service';
 import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-service';
+import { ViewAllPost } from '@app/use-cases/veiw-all-post';
+import { RemovePost } from '@app/use-cases/remove-post';
+import { UpdatePost } from '@app/use-cases/update-post';
+import { UpdatePostbody } from '../dtos/update-post-body';
 
 @Controller('post')
 export class PostsController {
@@ -23,6 +30,9 @@ export class PostsController {
     private createPost: CreatePost,
     private subscription: SubscriptionPost,
     private firebaseStorageService: FirebaseStorageService,
+    private viewAllPost: ViewAllPost,
+    private removePost: RemovePost,
+    private updatePost: UpdatePost,
   ) {}
 
   @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
@@ -41,6 +51,23 @@ export class PostsController {
     return post;
   }
 
+  @Get('/all')
+  async viewAll() {
+    return this.viewAllPost.execute();
+  }
+
+  @Put('update/:id')
+  async update(@Body() body: UpdatePostbody, @Param() id: string) {
+    const { content, imageUrl, isPublish, title } = body;
+
+    await this.updatePost.execute({ id, content, imageUrl, isPublish, title });
+  }
+
+  @Delete('remove/:id')
+  async Delete(@Param() id: string) {
+    await this.removePost.execute(id);
+  }
+
   @Post('subscribe')
   async subscribe(@Body() body: SubscriptionBody) {
     const { email, postId } = body;
@@ -50,6 +77,7 @@ export class PostsController {
     return { subscription };
   }
 
+  @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile() file: Express.Multer.File) {

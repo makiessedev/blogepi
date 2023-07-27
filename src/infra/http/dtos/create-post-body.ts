@@ -14,5 +14,5 @@ export class CreatePostBody {
   @IsString()
   @IsUrl()
   @IsOptional()
-  imageUrl: string;
+  imageUrl?: string;
 }
