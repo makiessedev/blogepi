@@ -10,6 +10,7 @@ import { CreatePost } from 'src/app/use-cases/create-post';
 import { PostsController } from './controllers/posts-controller';
 import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
 import { UploadService } from '@infra/upload/supabase/upload-service';
+import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-service';
 
 @Module({
   imports: [
@@ -25,7 +26,7 @@ import { UploadService } from '@infra/upload/supabase/upload-service';
     AuthenticateUser,
     CreatePost,
     SubscriptionPost,
-    UploadService,
+    FirebaseStorageService,
   ],
   controllers: [UsersController, AuthenticateController, PostsController],
 })

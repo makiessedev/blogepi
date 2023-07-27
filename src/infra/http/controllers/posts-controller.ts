@@ -15,13 +15,14 @@ import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
 import { SubscriptionBody } from '../dtos/subscription-body';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UploadService } from '@infra/upload/supabase/upload-service';
+import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-service';
 
 @Controller('post')
 export class PostsController {
   constructor(
     private createPost: CreatePost,
     private subscription: SubscriptionPost,
-    private uploadService: UploadService,
+    private firebaseStorageService: FirebaseStorageService,
   ) {}
 
   @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
@@ -52,8 +53,8 @@ export class PostsController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('file'))
   async upload(@UploadedFile() file: Express.Multer.File) {
-    const upload = await this.uploadService.execute(file);
+    const url = await this.firebaseStorageService.uploadFile(file);
 
-    return upload;
+    return url;
   }
 }
