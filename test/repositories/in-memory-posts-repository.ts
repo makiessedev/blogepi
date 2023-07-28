@@ -20,15 +20,23 @@ export class InMemoryPostsRepository implements PostsRepository {
     return post;
   }
 
-  delete(postId: string): Promise<void> {
-    throw new Error('Method not implemented.');
+  async delete(postId: string): Promise<void> {
+    const postIndex = this.posts.findIndex((post) => post.id === postId);
+
+    if (postIndex >= 0) {
+      this.posts.splice(postIndex, 1);
+    }
   }
 
-  update(post: UpdatePostDTO): Promise<void> {
-    throw new Error('Method not implemented.');
+  async update(props: Post): Promise<void> {
+    const postIndex = this.posts.findIndex((post) => post.id === props.id);
+
+    if (postIndex >= 0) {
+      this.posts[postIndex] = props;
+    }
   }
 
-  findAll(): Promise<Post[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<Post[]> {
+    return this.posts;
   }
 }
