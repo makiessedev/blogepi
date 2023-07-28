@@ -16,6 +16,7 @@ import { SubscriptionsController } from './controllers/subscriptions-controller'
 import { FindAllPost } from '@app/use-cases/find-all-post';
 import { FindPost } from '@app/use-cases/find-post';
 import { ViewPost } from '@app/use-cases/view-post';
+import { AllInscribed } from '@app/use-cases/all-inscribed';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { ViewPost } from '@app/use-cases/view-post';
     UpdatePost,
     FindPost,
     ViewPost,
+    AllInscribed,
   ],
   controllers: [
     UsersController,

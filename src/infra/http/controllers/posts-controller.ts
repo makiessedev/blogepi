@@ -59,9 +59,9 @@ export class PostsController {
 
   @Get('/:id')
   async viewUnique(@Param() { id }: { id: string }) {
-    const post = await this.findPost.execute(id);
+    await this.viewPost.execute(id);
 
-    await this.viewPost.execute(post.id);
+    const post = await this.findPost.execute(id);
 
     return post;
   }
