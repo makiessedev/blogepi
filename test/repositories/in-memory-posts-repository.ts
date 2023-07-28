@@ -1,8 +1,5 @@
 import { Post } from '@app/entities/post';
-import {
-  PostsRepository,
-  UpdatePostDTO,
-} from '@app/repositories/posts-repository';
+import { PostsRepository } from '@app/repositories/posts-repository';
 
 export class InMemoryPostsRepository implements PostsRepository {
   public posts: Post[] = [];

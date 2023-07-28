@@ -23,6 +23,7 @@ import { ViewAllPost } from '@app/use-cases/veiw-all-post';
 import { RemovePost } from '@app/use-cases/remove-post';
 import { UpdatePost } from '@app/use-cases/update-post';
 import { UpdatePostbody } from '../dtos/update-post-body';
+import { ViewPost } from '@app/use-cases/view-post';
 
 @Controller('post')
 export class PostsController {
@@ -33,6 +34,7 @@ export class PostsController {
     private viewAllPost: ViewAllPost,
     private removePost: RemovePost,
     private updatePost: UpdatePost,
+    private viewPost: ViewPost,
   ) {}
 
   @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
@@ -51,9 +53,14 @@ export class PostsController {
     return post;
   }
 
-  @Get('/all')
+  @Get('all')
   async viewAll() {
     return this.viewAllPost.execute();
+  }
+
+  @Get('/:id')
+  async viewUnique(@Param() { id }: { id: string }) {
+    return this.viewPost.execute(id);
   }
 
   @Put('update/:id')

@@ -14,6 +14,7 @@ import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-
 import { ViewAllPost } from '@app/use-cases/veiw-all-post';
 import { RemovePost } from '@app/use-cases/remove-post';
 import { UpdatePost } from '@app/use-cases/update-post';
+import { ViewPost } from '@app/use-cases/view-post';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { UpdatePost } from '@app/use-cases/update-post';
     ViewAllPost,
     RemovePost,
     UpdatePost,
+    ViewPost,
   ],
   controllers: [UsersController, AuthenticateController, PostsController],
 })
