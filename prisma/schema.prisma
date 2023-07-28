@@ -20,16 +20,16 @@ model User {
 }
 
 model Post {
-  id            String         @id @default(uuid())
-  isPublish     Boolean        @default(true)
-  title         String
-  content       String
-  imageUrl      String?        @unique
-  author        User           @relation(fields: [authorId], references: [id])
-  authorId      String
-  subscriptions Subscription[]
-  updatedAt     DateTime       @updatedAt
-  createdAt     DateTime       @default(now())
+  id        String   @id @default(uuid())
+  isPublish Boolean  @default(true)
+  title     String
+  content   String
+  imageUrl  String?  @unique
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  String
+  views     Int
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
 
   @@map("posts")
 }
@@ -37,8 +37,6 @@ model Post {
 model Subscription {
   id           String   @id @default(uuid())
   email        String   @unique
-  post         Post     @relation(fields: [postId], references: [id])
-  postId       String
   subscribedAt DateTime @default(now())
 
   @@map("subscriptions")
