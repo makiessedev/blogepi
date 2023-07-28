@@ -21,14 +21,15 @@ export class PrismaPostsRepository implements PostsRepository {
     await this.prisma.post.delete({ where: { id: postId } });
   }
 
-  async update(post: UpdatePostDTO): Promise<void> {
+  async update(post: Post): Promise<void> {
     await this.prisma.post.update({
       where: { id: post.id },
       data: {
+        title: post.title,
         content: post.content,
         imageUrl: post.imageUrl,
         isPublish: post.isPublish,
-        title: post.title,
+        views: post.views,
       },
     });
   }

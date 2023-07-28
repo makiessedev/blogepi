@@ -1,14 +1,17 @@
 import { PostsRepository } from '@app/repositories/posts-repository';
-import { Injectable } from '@nestjs/common';
-import { Post } from '@prisma/client';
+import { BadRequestException, Injectable } from '@nestjs/common';
 
 @Injectable()
 export class ViewPost {
   constructor(private postsRepository: PostsRepository) {}
 
-  async execute(id: string): Promise<Post | null> {
-    const post = await this.postsRepository.findById(id);
+  async execute(postId: string): Promise<void> {
+    const post = await this.postsRepository.findById(postId);
 
-    return post ? post : null;
+    if (!post) throw new BadRequestException('post does not exists!');
+
+    post.toView();
+
+    await this.postsRepository.update(post);
   }
 }

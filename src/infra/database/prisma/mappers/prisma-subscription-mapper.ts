@@ -10,7 +10,6 @@ export class PrismaSubscriptionMapper {
     return {
       email: data.email,
       id: data.id,
-      postId: data.postId,
       subscribedAt: data.subscribedAt,
     };
   }

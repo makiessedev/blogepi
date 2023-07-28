@@ -17,10 +17,11 @@ import { EnsureAdministratorGuard } from '../middlewares/ensure-administrator';
 import { CreatePostBody } from '../dtos/create-post-body';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-service';
-import { ViewAllPost } from '@app/use-cases/veiw-all-post';
 import { RemovePost } from '@app/use-cases/remove-post';
 import { UpdatePost } from '@app/use-cases/update-post';
 import { UpdatePostbody } from '../dtos/update-post-body';
+import { FindAllPost } from '@app/use-cases/find-all-post';
+import { FindPost } from '@app/use-cases/find-post';
 import { ViewPost } from '@app/use-cases/view-post';
 
 @Controller('post')
@@ -28,9 +29,10 @@ export class PostsController {
   constructor(
     private createPost: CreatePost,
     private firebaseStorageService: FirebaseStorageService,
-    private viewAllPost: ViewAllPost,
+    private findAllPost: FindAllPost,
     private removePost: RemovePost,
     private updatePost: UpdatePost,
+    private findPost: FindPost,
     private viewPost: ViewPost,
   ) {}
 
@@ -52,12 +54,16 @@ export class PostsController {
 
   @Get('all')
   async viewAll() {
-    return this.viewAllPost.execute();
+    return this.findAllPost.execute();
   }
 
   @Get('/:id')
   async viewUnique(@Param() { id }: { id: string }) {
-    return this.viewPost.execute(id);
+    const post = await this.findPost.execute(id);
+
+    await this.viewPost.execute(post.id);
+
+    return post;
   }
 
   @Put('update/:id')

@@ -3,7 +3,7 @@ import { PostsRepository } from '@app/repositories/posts-repository';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ViewAllPost {
+export class FindAllPost {
   constructor(private postsRepository: PostsRepository) {}
 
   async execute(): Promise<Post[]> {

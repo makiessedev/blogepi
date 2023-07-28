@@ -1,4 +1,3 @@
-import { Post } from '@app/entities/post';
 import { PostsRepository } from '@app/repositories/posts-repository';
 import { Injectable } from '@nestjs/common';
 

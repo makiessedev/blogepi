@@ -10,12 +10,13 @@ export class PrismaPostMapper {
     return {
       id: post.id,
       authorId: post.authorId,
+      title: post.title,
       content: post.content,
       imageUrl: post.imageUrl,
-      createdAt: post.createdAt,
+      views: post.views,
       isPublish: post.isPublish,
-      title: post.title,
       updatedAt: post.updatedAt,
+      createdAt: post.createdAt,
     };
   }
 }

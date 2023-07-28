@@ -9,12 +9,13 @@ import { AuthenticateUser } from 'src/app/use-cases/authenticate-user';
 import { CreatePost } from 'src/app/use-cases/create-post';
 import { PostsController } from './controllers/posts-controller';
 import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-service';
-import { ViewAllPost } from '@app/use-cases/veiw-all-post';
 import { RemovePost } from '@app/use-cases/remove-post';
 import { UpdatePost } from '@app/use-cases/update-post';
-import { ViewPost } from '@app/use-cases/view-post';
 import { Subscribe } from '@app/use-cases/subscribe';
 import { SubscriptionsController } from './controllers/subscriptions-controller';
+import { FindAllPost } from '@app/use-cases/find-all-post';
+import { FindPost } from '@app/use-cases/find-post';
+import { ViewPost } from '@app/use-cases/view-post';
 
 @Module({
   imports: [
@@ -31,9 +32,10 @@ import { SubscriptionsController } from './controllers/subscriptions-controller'
     CreatePost,
     Subscribe,
     FirebaseStorageService,
-    ViewAllPost,
+    FindAllPost,
     RemovePost,
     UpdatePost,
+    FindPost,
     ViewPost,
   ],
   controllers: [
