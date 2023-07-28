@@ -3,7 +3,6 @@ import { randomUUID } from 'crypto';
 interface SubscribedProps {
   id?: string;
   email: string;
-  postId: string;
   subscribedAt?: Date;
 }
 
@@ -25,14 +24,6 @@ export class Subscription {
 
   set email(email: string) {
     this.props.email = email;
-  }
-
-  get postId(): string {
-    return this.props.postId;
-  }
-
-  set postId(postId: string) {
-    this.props.postId = postId;
   }
 
   get subscribedAt(): Date {

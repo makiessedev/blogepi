@@ -7,6 +7,7 @@ interface PostProps {
   content: string;
   imageUrl?: string;
   authorId: string;
+  views?: number;
   updatedAt?: Date;
   createdAt?: Date;
 }
@@ -16,6 +17,7 @@ export class Post {
     if (!this.props.id) this.props.id = randomUUID();
     if (!this.props.createdAt) this.props.createdAt = new Date();
     if (this.props.isPublish === undefined) this.props.isPublish = true;
+    if (this.props.views === undefined) this.props.views = 0;
   }
 
   get id(): string {
@@ -60,6 +62,14 @@ export class Post {
 
   set authorId(value: string) {
     this.props.authorId = value;
+  }
+
+  toView() {
+    this.props.views++;
+  }
+
+  get views(): number {
+    return this.props.views;
   }
 
   get updatedAt(): Date | undefined {

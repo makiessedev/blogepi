@@ -1,9 +1,6 @@
-import { IsEmail, IsUUID } from 'class-validator';
+import { IsEmail } from 'class-validator';
 
 export class SubscriptionBody {
   @IsEmail()
   email: string;
-
-  @IsUUID()
-  postId: string;
 }

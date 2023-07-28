@@ -15,8 +15,6 @@ import { CreatePost } from '../../../app/use-cases/create-post';
 import { EnsureAuthenticatedGuard } from '../middlewares/ensure-authenticated';
 import { EnsureAdministratorGuard } from '../middlewares/ensure-administrator';
 import { CreatePostBody } from '../dtos/create-post-body';
-import { SubscriptionPost } from 'src/app/use-cases/subscribe-post';
-import { SubscriptionBody } from '../dtos/subscription-body';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FirebaseStorageService } from '@infra/upload/firebase/firebase-storage-service';
 import { ViewAllPost } from '@app/use-cases/veiw-all-post';
@@ -29,7 +27,6 @@ import { ViewPost } from '@app/use-cases/view-post';
 export class PostsController {
   constructor(
     private createPost: CreatePost,
-    private subscription: SubscriptionPost,
     private firebaseStorageService: FirebaseStorageService,
     private viewAllPost: ViewAllPost,
     private removePost: RemovePost,
@@ -73,15 +70,6 @@ export class PostsController {
   @Delete('remove/:id')
   async Delete(@Param() { id }: { id: string }) {
     await this.removePost.execute(id);
-  }
-
-  @Post('subscribe')
-  async subscribe(@Body() body: SubscriptionBody) {
-    const { email, postId } = body;
-
-    const { subscription } = await this.subscription.execute({ email, postId });
-
-    return { subscription };
   }
 
   @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)

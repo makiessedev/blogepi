@@ -27,7 +27,7 @@ model Post {
   imageUrl  String?  @unique
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String
-  views     Int
+  views     Int      @default(0)
   updatedAt DateTime @updatedAt
   createdAt DateTime @default(now())
 
