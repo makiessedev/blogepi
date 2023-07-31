@@ -4,6 +4,10 @@ import { SubscriptionRepository } from 'src/app/repositories/subscriptions-repos
 export class InMemorySubscriptionsRepository implements SubscriptionRepository {
   public subscriptions: Subscription[] = [];
 
+  async findAll(): Promise<Subscription[]> {
+    return this.subscriptions;
+  }
+
   async subscribe(props: Subscription): Promise<void> {
     const subscription = new Subscription(props);
 
