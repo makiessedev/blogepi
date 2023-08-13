@@ -24,7 +24,7 @@ import { AllInscribed } from '@app/use-cases/all-inscribed';
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
-      signOptions: { expiresIn: 60 * 15 }, // 15 min
+      signOptions: { expiresIn: 60 * 60 * 16 }, // 15 min
     }),
   ],
   providers: [
