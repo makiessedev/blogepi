@@ -5,7 +5,7 @@ import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from '@infra/upload/firebase/firebase.config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, { cors: true });
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors();
 
