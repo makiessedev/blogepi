@@ -5,8 +5,11 @@ interface PostProps {
   isPublish?: boolean;
   title: string;
   content: string;
+  description: string;
   imageUrl?: string;
-  authorId: string;
+  userId: string;
+  author?: string;
+  authorUrl?: string;
   views?: number;
   updatedAt?: Date;
   createdAt?: Date;
@@ -40,6 +43,14 @@ export class Post {
     this.props.title = value;
   }
 
+  get description(): string {
+    return this.props.description;
+  }
+
+  set description(value: string) {
+    this.props.description = value;
+  }
+
   get content(): string {
     return this.props.content;
   }
@@ -56,12 +67,28 @@ export class Post {
     this.props.imageUrl = value;
   }
 
-  get authorId(): string {
-    return this.props.authorId;
+  get userId(): string {
+    return this.props.userId;
   }
 
-  set authorId(value: string) {
-    this.props.authorId = value;
+  set userId(value: string) {
+    this.props.userId = value;
+  }
+
+  get author(): string {
+    return this.props.author;
+  }
+
+  set author(value: string) {
+    this.props.author = value;
+  }
+
+  get authorUrl(): string {
+    return this.props.authorUrl;
+  }
+
+  set authorUrl(value: string) {
+    this.props.authorUrl = value;
   }
 
   toView() {

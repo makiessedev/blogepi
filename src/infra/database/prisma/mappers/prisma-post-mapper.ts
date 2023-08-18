@@ -9,11 +9,14 @@ export class PrismaPostMapper {
   static toPrisma(post: Post): rawPost {
     return {
       id: post.id,
-      authorId: post.authorId,
+      userId: post.userId,
       title: post.title,
+      description: post.description,
       content: post.content,
       imageUrl: post.imageUrl,
       views: post.views,
+      author: post.author,
+      authorUrl: post.authorUrl,
       isPublish: post.isPublish,
       updatedAt: post.updatedAt,
       createdAt: post.createdAt,

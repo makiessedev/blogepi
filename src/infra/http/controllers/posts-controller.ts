@@ -39,14 +39,25 @@ export class PostsController {
   @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
   @Post()
   async create(@Body() body: CreatePostBody, @Request() request) {
-    const { isPublish, title, content, imageUrl } = body;
+    const {
+      isPublish,
+      title,
+      description,
+      content,
+      imageUrl,
+      author,
+      authorUrl,
+    } = body;
 
     const { post } = await this.createPost.execute({
       isPublish,
       title,
+      description,
       content,
       imageUrl,
-      authorId: request.user.sub,
+      userId: request.user.sub,
+      author,
+      authorUrl,
     });
 
     return post;

@@ -9,7 +9,18 @@ export class CreatePostBody {
   title: string;
 
   @IsString()
+  description: string;
+
+  @IsString()
   content: string;
+
+  @IsString()
+  @IsOptional()
+  author?: string;
+
+  @IsString()
+  @IsOptional()
+  authorUrl?: string;
 
   @IsString()
   @IsUrl()

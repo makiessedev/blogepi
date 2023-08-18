@@ -1,7 +1,4 @@
-import {
-  PostsRepository,
-  UpdatePostDTO,
-} from '../../../../app/repositories/posts-repository';
+import { PostsRepository } from '../../../../app/repositories/posts-repository';
 import { PrismaService } from '../prisma.service';
 import { Post } from '../../../../app/entities/post';
 import { PrismaPostMapper } from '../mappers/prisma-post-mapper';
