@@ -66,6 +66,7 @@ export class PostsController {
     return post;
   }
 
+  @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
   @Put('update/:id')
   async update(@Body() body: UpdatePostbody, @Param() { id }: { id: string }) {
     const { content, imageUrl, isPublish, title } = body;
@@ -73,6 +74,7 @@ export class PostsController {
     await this.updatePost.execute({ id, content, imageUrl, isPublish, title });
   }
 
+  @UseGuards(EnsureAuthenticatedGuard, EnsureAdministratorGuard)
   @Delete('remove/:id')
   async Delete(@Param() { id }: { id: string }) {
     await this.removePost.execute(id);
