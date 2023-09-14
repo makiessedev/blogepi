@@ -9,7 +9,11 @@ export class PrismaPostsRepository implements PostsRepository {
   constructor(private prisma: PrismaService) {}
 
   async findAll(): Promise<Post[]> {
-    const raw = await this.prisma.post.findMany();
+    const raw = await this.prisma.post.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
 
     return raw.map(PrismaPostMapper.toDomain);
   }
