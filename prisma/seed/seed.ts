@@ -16,12 +16,13 @@ async function main() {
   });
 
   const raw = posts.map(
-    async ({ author, authorUrl, content, description, isPublish, title }) => {
+    async ({ author, authorUrl, content, imageUrl, description, isPublish, title }) => {
       return await prisma.post.create({
         data: {
           userId: admin.id,
           author,
           authorUrl,
+          imageUrl,
           content,
           description,
           isPublish,
