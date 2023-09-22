@@ -1,12 +1,11 @@
-import { Post as rawPost } from '@prisma/client';
 import { Post } from '../../../../app/entities/post';
 
 export class PrismaPostMapper {
-  static toDomain(post: rawPost): Post {
+  static toDomain(post): Post {
     return new Post(post);
   }
 
-  static toPrisma(post: Post): rawPost {
+  static toPrisma(post: Post) {
     return {
       id: post.id,
       userId: post.userId,

@@ -1,6 +1,6 @@
+import { Post } from '@app/entities/post';
 import { PostsRepository } from '@app/repositories/posts-repository';
 import { Injectable } from '@nestjs/common';
-import { Post } from '@prisma/client';
 
 @Injectable()
 export class FindPost {

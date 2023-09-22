@@ -1,8 +1,7 @@
-import { User as rawUser } from '@prisma/client';
 import { User } from 'src/app/entities/user';
 
 export class PrismaUserMapper {
-  static toPrisma(user: User): rawUser {
+  static toPrisma(user: User) {
     return {
       id: user.id,
       name: user.name,
@@ -13,7 +12,7 @@ export class PrismaUserMapper {
     };
   }
 
-  static toDomain(user: rawUser): User {
+  static toDomain(user): User {
     return new User(user);
   }
 }
