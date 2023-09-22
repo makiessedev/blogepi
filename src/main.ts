@@ -11,6 +11,6 @@ async function bootstrap() {
 
   initializeApp(firebaseConfig);
 
-  await app.listen(3000);
+  await app.listen(10000);
 }
 bootstrap();
